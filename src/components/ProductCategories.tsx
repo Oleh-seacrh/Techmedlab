@@ -47,7 +47,7 @@ const sections: Array<{
       "Merck & Co. (MSD)",
       "Novartis",
     ],
-    image: "/pharmacology.png",
+    image: "/Pharmacology.png",
     showPlaceholder: false,
   },
 ] as const;
