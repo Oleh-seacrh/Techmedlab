@@ -2,7 +2,15 @@
 
 import { motion } from "framer-motion";
 
-const sections = [
+const sections: Array<{
+  title: string;
+  desc: string;
+  gradient: string;
+  bgTint: string;
+  brands: string[];
+  image?: string;
+  showPlaceholder?: boolean;
+}> = [
   {
     title: "Radiology Equipment & Consumables",
     desc: "X-ray consumables and equipment from trusted manufacturers for diagnostic imaging.",
@@ -27,18 +35,47 @@ const sections = [
     brands: ["Fresenius", "Baxter", "Nipro", "B. Braun", "Toray"],
     image: "/nephrology.png",
   },
+  {
+    title: "Pharmacology",
+    desc: "Trusted pharmacology brands and supplies for laboratories and medical facilities.",
+    gradient: "from-purple-500 to-indigo-500",
+    bgTint: "bg-purple-500/5",
+    brands: [
+      "Pfizer",
+      "Johnson & Johnson",
+      "AbbVie",
+      "Merck & Co. (MSD)",
+      "Novartis",
+    ],
+    image: "/pharmacology.png",
+    showPlaceholder: false,
+  },
 ] as const;
 
-function SectionImage({ gradient, alt, src }: { gradient: string; alt: string; src?: string }) {
+function SectionImage({
+  gradient,
+  alt,
+  src,
+  showPlaceholder = true,
+}: {
+  gradient: string;
+  alt: string;
+  src?: string;
+  showPlaceholder?: boolean;
+}) {
   return (
-    <div className="relative aspect-[4/3] min-h-[320px] md:min-h-[420px] rounded-2xl border border-slate-200/60 bg-white overflow-hidden shadow-[0_4px_24px_-4px_rgba(0,0,0,0.08)]">
+    <div className="relative aspect-[4/3] min-h-[320px] md:min-h-[420px] rounded-2xl overflow-hidden">
       {src ? (
         <div className="absolute inset-0 flex items-center justify-center p-4 md:p-6">
-          <img src={src} alt={alt} className="w-full h-full object-contain" />
+          <img
+            src={src}
+            alt={alt}
+            className="w-full h-full object-contain"
+          />
         </div>
-      ) : (
+      ) : showPlaceholder ? (
         <div className={`absolute inset-4 rounded-xl bg-gradient-to-br ${gradient}`} />
-      )}
+      ) : null}
     </div>
   );
 }
@@ -74,7 +111,12 @@ export default function ProductCategories() {
               className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center"
             >
               <div className={i % 2 === 1 ? "lg:order-2" : ""}>
-                <SectionImage gradient={section.gradient} alt={section.title} src={section.image} />
+                <SectionImage
+                  gradient={section.gradient}
+                  alt={section.title}
+                  src={section.image}
+                  showPlaceholder={section.showPlaceholder ?? true}
+                />
               </div>
               <div className={i % 2 === 1 ? "lg:order-1" : ""}>
                 <div className={`relative rounded-2xl ${section.bgTint} py-12 md:py-16 px-8 md:px-12 border border-slate-200/60 bg-white/70 backdrop-blur-[1px]`}>
