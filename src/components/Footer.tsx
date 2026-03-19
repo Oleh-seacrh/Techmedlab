@@ -6,9 +6,13 @@ export default function Footer() {
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
           <div>
-            <p className="font-display text-lg font-bold text-slate-900 mb-2">
-              Techmed Lab
-            </p>
+            <div className="h-20 overflow-hidden mb-1">
+              <img
+                src="/Logo.png"
+                alt="Techmed Lab"
+                className="h-28 w-auto object-contain object-left"
+              />
+            </div>
             <p className="text-slate-600 text-sm leading-relaxed max-w-sm">
               Quality medical chemicals and supplies for laboratories and medical facilities.
             </p>

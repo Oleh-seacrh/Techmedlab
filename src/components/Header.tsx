@@ -8,9 +8,13 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/50">
-      <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="font-display text-xl font-bold text-slate-900">
-          Techmed Lab
+      <div className="container mx-auto px-6 h-20 flex items-center justify-between">
+        <a href="#" className="inline-flex items-center" aria-label="Techmed Lab home">
+          <img
+            src="/Logo.png"
+            alt="Techmed Lab"
+            className="h-28 w-auto object-contain -my-3"
+          />
         </a>
         <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
           <a href="#fields" className="text-slate-600 hover:text-primary-600 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded">
