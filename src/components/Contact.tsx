@@ -1,8 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function Contact() {
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
   return (
     <section id="contact" className="py-24 md:py-32 bg-white scroll-mt-20">
       <div className="container mx-auto px-6">
@@ -25,10 +29,30 @@ export default function Contact() {
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            action="#"
-            method="POST"
             className="space-y-6"
             aria-label="Contact form"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              setStatus("sending");
+              setErrorMessage("");
+
+              try {
+                const formData = new FormData(e.currentTarget);
+                const res = await fetch("/api/contact", { method: "POST", body: formData });
+
+                if (!res.ok) {
+                  const data = await res.json().catch(() => null);
+                  setStatus("error");
+                  setErrorMessage(data?.error || "Something went wrong. Please try again.");
+                  return;
+                }
+
+                setStatus("success");
+              } catch (err) {
+                setStatus("error");
+                setErrorMessage("Network error. Please try again.");
+              }
+            }}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
@@ -91,11 +115,24 @@ export default function Contact() {
             <p className="text-xs text-slate-500">
               This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
             </p>
+
+            {status === "success" && (
+              <p className="text-sm font-medium text-emerald-700">
+                Request sent successfully. We will contact you within 24 hours.
+              </p>
+            )}
+            {status === "error" && (
+              <p className="text-sm font-medium text-red-700">
+                {errorMessage}
+              </p>
+            )}
+
             <button
               type="submit"
               className="w-full px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-xl transition-colors duration-300 shadow-lg shadow-primary-500/25"
+              disabled={status === "sending"}
             >
-              Send Request
+              {status === "sending" ? "Sending..." : "Send Request"}
             </button>
           </motion.form>
         </div>
