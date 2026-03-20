@@ -43,14 +43,23 @@ export default function Contact() {
                 if (!res.ok) {
                   const data = await res.json().catch(() => null);
                   setStatus("error");
-                  setErrorMessage(data?.error || "Something went wrong. Please try again.");
+                  const errorText =
+                    typeof data?.error === "string" && data.error.trim().length > 0
+                      ? data.error
+                      : "Something went wrong. Please try again.";
+                  setErrorMessage(errorText);
                   return;
                 }
 
                 setStatus("success");
+                (e.currentTarget as HTMLFormElement).reset();
               } catch (err) {
                 setStatus("error");
-                setErrorMessage("Network error. Please try again.");
+                setErrorMessage(
+                  err instanceof Error && err.message
+                    ? err.message
+                    : "Network error. Please try again."
+                );
               }
             }}
           >

@@ -13,7 +13,7 @@ export default function Header() {
           <img
             src="/Logo.png"
             alt="Techmed Lab"
-            className="h-28 w-auto object-contain -my-3"
+            className="h-16 w-auto object-contain -my-1"
           />
         </a>
         <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
