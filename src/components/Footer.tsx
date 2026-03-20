@@ -10,7 +10,7 @@ export default function Footer() {
               <img
                 src="/Logo.png"
                 alt="Techmed Lab"
-                className="h-16 w-auto object-contain object-left"
+                className="h-14 w-auto object-contain object-left"
               />
             </div>
             <p className="text-slate-600 text-sm leading-relaxed max-w-sm">
