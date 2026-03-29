@@ -47,7 +47,7 @@ const sections: Array<{
       "Merck & Co. (MSD)",
       "Novartis",
     ],
-    image: "/Pharmacology.png",
+    image: "/bg-removed-1774607102828-ag6zeb2kiew-20260329T143424.png",
     showPlaceholder: false,
   },
 ] as const;
