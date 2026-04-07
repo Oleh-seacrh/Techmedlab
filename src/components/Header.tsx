@@ -11,7 +11,7 @@ export default function Header() {
       <div className="container mx-auto px-6 h-20 flex items-center justify-between">
         <a href="#" className="inline-flex items-center" aria-label="Techmed Lab home">
           <img
-            src="/Logo.png"
+            src="/Logo2.png"
             alt="Techmed Lab"
             className="h-14 w-auto object-contain -my-0.5"
           />

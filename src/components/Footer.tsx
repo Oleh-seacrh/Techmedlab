@@ -8,7 +8,7 @@ export default function Footer() {
           <div>
             <div className="h-20 overflow-hidden mb-1">
               <img
-                src="/Logo.png"
+                src="/Logo2.png"
                 alt="Techmed Lab"
                 className="h-14 w-auto object-contain object-left"
               />
